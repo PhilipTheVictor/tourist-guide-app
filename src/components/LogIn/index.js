@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, AsyncStorage } from 'react-native'
+import { View, Text, AsyncStorage,TouchableOpacity } from 'react-native'
 import { CardSection, Button, Input } from '../.././common'
-
+import firebase from 'firebase'
 
 export class LogInComponent extends Component {
 
@@ -13,6 +13,17 @@ export class LogInComponent extends Component {
     }
 
     saveData() {
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch((error) => {
+            alert(error.message)
+        })
+            .then((res) => {
+                alert("You have successfully logged in")
+
+                this.props.navigation.navigate('Dashboard')
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
     }
     render() {
         const { navigate } = this.props.navigation;
@@ -34,6 +45,9 @@ export class LogInComponent extends Component {
                 <Button onPress={() => navigate('Dashboard')}>
                     Submit
        </Button>
+            </CardSection>
+            <CardSection>
+                <TouchableOpacity><Text onPress={() => navigate('SignUp')}>Not a member? Sign Up Here</Text></TouchableOpacity>
             </CardSection>
         </View>
         )
