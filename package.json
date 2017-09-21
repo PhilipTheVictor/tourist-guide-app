@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@mapbox/polyline": "^0.2.0",
+    "axios": "^0.16.2",
     "babel-preset-react-native": "^2.1.0",
     "firebase": "^4.3.1",
     "native-base": "^2.3.1",

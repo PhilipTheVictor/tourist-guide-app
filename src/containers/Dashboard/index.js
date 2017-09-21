@@ -4,6 +4,10 @@ import { Card, CardSection, Button } from '../.././common'
 // import ResponsiveImage from 'react-native-responsive-image'
 
 export class DashboardComponent extends Component {
+    constructor(props){
+        super(props);
+        console.disableYellowBox = true;
+    }
     render() {
         const { navigate } = this.props.navigation;
         return (

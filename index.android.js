@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 import { StackNavigator, TabNavigator } from 'react-navigation'
-import { LogInComponent, SignUpComponent, PlacesList, MainComponent, DashboardComponent, RegisterComponent, SearchByNameComponent } from './src'
+import { LogInComponent, SignUpComponent, PlacesList, MainComponent, PlaceDetails,DashboardComponent, RegisterComponent, SearchByNameComponent } from './src'
 import { CardSection, Button, Card } from './src/common'
 import firebase from 'firebase'
 
@@ -39,6 +39,7 @@ const SimpleApp = StackNavigator({
   Home: { screen: MainComponent },
   Dashboard: { screen: DashboardComponent },
   Reg: { screen: RegisterComponent },
+  PlaceDetails: { screen : PlaceDetails },
   SearchN: { screen: SearchByNameComponent },
   PlacesList: { screen: PlacesList },
   LogIn: { screen: LogInComponent },
