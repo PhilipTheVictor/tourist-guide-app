@@ -1,52 +1,57 @@
 import React, { Component } from 'react'
-import { AsyncStorage, View, Text,StyleSheet } from 'react-native'
-import { Card, CardSection, Button, LibraryList, LibraryItem } from '../.././common'
-import MapView from 'react-native-maps'
+import { AsyncStorage, View, StyleSheet } from 'react-native'
+import { Card, CardSection, LibraryList, LibraryItem } from '../.././common'
+import PlacesAutoComplete from 'react-native-places-autocomplete'
+import { Container, Header, Item, Input, Icon, Button, Text } from 'native-base';
 
 export class PlacesList extends Component {
+    static navigationOptions = {
+        header: false
+    }
     constructor(props) {
         super(props);
+
+        this.state = {}
     }
-
-
     render() {
-        const { navigate } = this.props.navigation;
         return (
-            <View style={styles.container}>
+            <Container  style={{ flex: 1, marginTop: 64 }}>
+                <PlacesAutoComplete
+                    apikey="AIzaSyDmqxUoJZ9VikePf4zjGiuVAnpYAlUODEo"
+                    rankby="distance"
+                    radius="500"
+                    type="restaurant|department_store|pharmacy|book_store|meal_delivery|meal_takeaway|bar"
+                    iconColor="#FC1D47"
+                    merchantNameColor="#37383B"
+                    searchText={this.state.searchText}
+                    searchInput={
+                         <Header searchBar rounded>
+          <Item>
+            <Icon name="ios-search" />
+            <Input ref='searchBar'
+                            placeholder='Search'
+                            onChangeText={text => {
+                                console.log(text);
+                                this.setState({ searchText: text });
+                            }}
+                            onSearchButtonPress={() => {
+                            }}
+                            onCancelButtonPress={() => {
+                            }} 
+                            onSelect={(details) => { // When you select a merchant this will be triggered.
+                        console.log(details);
+                    }} />
+            <Icon name="ios-people" />
+          </Item>
+          <Button transparent>
+            <Text>Search</Text>
+          </Button>
+        </Header>} />
+        </Container>
 
-                <MapView
-                style={styles.map}
-                    initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                    }}
-                />
-            </View>
-        )
+        );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      justifyContent: 'flex-end',
-      alignItems: 'center',
-    },
-    map: {
-      position: 'absolute',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-    },
-  });
-  
-PlacesList.navigationOptions = {
-    title: 'Places List'
-}
+// PlaceList.navigationOptions = {
+//     title: 'Places List'
