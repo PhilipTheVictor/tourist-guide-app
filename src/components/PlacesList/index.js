@@ -61,7 +61,7 @@ export default class PlacesList extends Component {
             },
             (err) => console.warn(err.message)
         )
-
+this.getNearbyPlaces()
 
     }
     onValueChange(value) {
